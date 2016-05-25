@@ -1,4 +1,7 @@
 gcm/*
+gcm_test/*
+gcm_train/*
+obs_in_grid/*
 obs_new/*
 reference/*
 .Rhistory
