@@ -1,0 +1,14 @@
+in boston, ct,ri
+
+> sqrt(mean((Yim_test-Xim_test)^2))
+[1] 85.17726
+> sqrt(mean((Yim_test-Qi_test)^2))
+[1] 78.22547
+> sqrt(mean((Yim_test-Ci_test)^2))
+[1] 25.47966
+
+
+mylon=c(-118.75,-116.25)
+mylat=c(35,37)
+mon=2
+to generate qm1 qmu

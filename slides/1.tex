@@ -1,0 +1,73 @@
+\documentclass[10pt]{article}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage[margin=0.5in]{geometry}
+\begin{document}
+
+% Please add the following required packages to your document preamble:
+% 
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+\begin{table}[]
+\centering
+\caption{My understanding of Downscaling}
+\label{my-label}
+\begin{tabular}{|l|l|l|l|l|l|}
+\hline
+                     & Scale  & Degree    & Train(have truth) & Validation(have truth, pretend not known) & Test(no truth) \\ \hline
+\rowcolor[HTML]{EFEFEF} 
+GCM                  & coarser & 2.5*2.5   & has data          & has data                                  & has data       \\ \hline
+\rowcolor[HTML]{EFEFEF} 
+Reanalysis           & coarser & 1.5*1.5   & has data          & has data                                  & has data       \\ \hline
+\rowcolor[HTML]{656565} 
+Observation(station) & finer  & 0.25*0.25 & has data          & has data                                  & no data        \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{itemize}
+\item Step 1(model building): 1 coarse + (only) 1 fine = model
+\item Step 2(prediction): model + (future) 1 coarse (as input) = downscaling fine 
+\item Question: what is the right(suggested) way to do downscaling? 
+\item Question: what is the wrong way to do downscaling?
+\item Question: what is the not wrong way(but not very good way) to do downscaling?
+\begin{itemize}
+\item How to choose the coarse scale variable, GCM or Reanalysis? In Step 1 and Step 2.
+\item Train + Validation: what is the coarse scale variable, GCM or Reanalysis?
+\item Train + Test: what is the coarse scale variable, GCM or Reanalysis?
+\end{itemize}
+\end{itemize}
+
+Here are the T.J.'s comments
+
+\begin{itemize}
+\item[1] \begin{quotation}
+For testing downscaling models I'd recommend using a reanalysis dataset rather than a GCM to allow for better evaluation.  When you evaluate using a GCM assumptions are made that the GCM is analogous to the "true" climate, along with others.
+\end{quotation}
+\item[2] \begin{quotation}
+cannot evaluate downscaled GCM projections with observed data
+\end{quotation}
+\end{itemize}
+
+
+\begin{table}[]
+\centering
+\caption{Which one is right/wrong/not suggested?}
+\label{my-label2}
+\begin{tabular}{|l|l|l|l|}
+\hline
+       & Train           & Validation      & Test            \\ \hline
+Coarser & GCM?Reanalysis? & GCM?Reanalysis? & GCM?Reanalysis? \\ \hline
+Finer   & Observation     & Observation     & [Goal: Observation]     \\ \hline
+\end{tabular}
+\end{table}
+
+
+So,
+\begin{itemize}
+\item[1] Train(Reanalysis)+Validation(Reanalysis)+Test(GCM) is right(suggested)?
+\item[2] What about: Train(Reanalysis)+Validation(Reanalysis)+Test(Reanalysis)?
+\item[3] Train(GCM)+Validation(GCM) is wrong?
+\item[4] Train(GCM)+Validation(Reanalysis) is right but not suggested?
+\end{itemize}
+
+
+
+\end{document}
